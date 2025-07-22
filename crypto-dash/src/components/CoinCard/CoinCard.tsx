@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 interface Roi {
   times: number;
   currency: string;
@@ -40,24 +42,26 @@ interface CoinCardProps {
 
 const CoinCard = ({ coin }: CoinCardProps) => {
   return (
-    <li className="coin-card">
-      <div className="coin-header">
-        <img className="coin-image" src={coin.image} alt={coin.name} />
-        <h2>{coin.name}</h2>
-        <p className="symbol">{coin.symbol.toUpperCase()}</p>
-      </div>
-      <p className="price">Price: ${coin.current_price.toLocaleString()}</p>
-      <p
-        className={
-          coin.price_change_percentage_24h < 0 ? "positive" : "negative"
-        }
-      >
-        24h Change: {coin.price_change_percentage_24h.toFixed(2)}%
-      </p>
-      <p className="market-cap">
-        Market Cap: ${coin.market_cap.toLocaleString()}
-      </p>
-    </li>
+    <Link to={`/coin/${coin.id}`}>
+      <li className="coin-card">
+        <div className="coin-header">
+          <img className="coin-image" src={coin.image} alt={coin.name} />
+          <h2>{coin.name}</h2>
+          <p className="symbol">{coin.symbol.toUpperCase()}</p>
+        </div>
+        <p className="price">Price: ${coin.current_price.toLocaleString()}</p>
+        <p
+          className={
+            coin.price_change_percentage_24h < 0 ? "positive" : "negative"
+          }
+        >
+          24h Change: {coin.price_change_percentage_24h.toFixed(2)}%
+        </p>
+        <p className="market-cap">
+          Market Cap: ${coin.market_cap.toLocaleString()}
+        </p>
+      </li>
+    </Link>
   );
 };
 
