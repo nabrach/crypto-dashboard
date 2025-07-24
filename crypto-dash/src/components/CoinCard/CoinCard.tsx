@@ -12,9 +12,28 @@ export interface Coin {
   symbol: string;
   name: string;
   image: string;
+  description: {
+    en: string;
+    [key: string]: string; // to handle other languages if needed
+  };
   current_price: number;
   market_cap: number;
   market_cap_rank: number;
+  market_data: {
+    current_price: {
+      usd: number;
+      [key: string]: number; // to handle other currencies if needed
+    };
+    market_cap: {
+      usd: number;
+      [key: string]: number; // to handle other currencies if needed
+    };
+    total_supply: number;
+    circulating_supply: number;
+    total_volume: number;
+    price_change_percentage_24h: number;
+    [key: string]: number | Record<string, number>; // to handle other data points
+  };
   fully_diluted_valuation: number | null;
   total_volume: number;
   high_24h: number;
